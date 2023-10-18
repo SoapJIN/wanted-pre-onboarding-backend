@@ -3,6 +3,7 @@ package wanted.backend.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import wanted.backend.dto.RecruitDetailResponseDTO;
 import wanted.backend.dto.RecruitRequestDTO;
 import wanted.backend.dto.RecruitResponseDTO;
 import wanted.backend.service.RecruitService;
@@ -46,5 +47,12 @@ public class RecruitApiController {
         List<RecruitResponseDTO> list = recruitService.getListByKeyword(keyword);
 
         return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<RecruitDetailResponseDTO> getRecruitDetail(@PathVariable("id")Long id) {
+        RecruitDetailResponseDTO dto = recruitService.getDetail(id);
+
+        return ResponseEntity.ok(dto);
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wanted.backend.common.exception.CustomException;
 import wanted.backend.common.exception.ErrorCode;
+import wanted.backend.dto.RecruitDetailResponseDTO;
 import wanted.backend.dto.RecruitRequestDTO;
 import wanted.backend.dto.RecruitResponseDTO;
 import wanted.backend.entity.CompanyEntity;
@@ -13,6 +14,7 @@ import wanted.backend.repository.CompanyRepository;
 import wanted.backend.repository.RecruitRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -77,5 +79,21 @@ public class RecruitService {
     public List<RecruitResponseDTO> getListByKeyword(String keyword) {
         return recruitRepository.findAllByKeyword(keyword).stream()
                 .map(RecruitResponseDTO::fromEntity).toList();
+    }
+
+    //5. 채용 상세 페이지를 가져옵니다.
+    @Transactional(readOnly = true)
+    public RecruitDetailResponseDTO getDetail(Long id) {
+        RecruitEntity recruitEntity = recruitRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCode.RECRUIT_NOT_FOUND));
+
+        CompanyEntity companyEntity = companyFindById(recruitEntity.getCompany().getId());
+
+        List<Long> companyRecruitIdList = recruitRepository.findAllByCompanyId(companyEntity.getId()).stream()
+                .map(RecruitEntity::getId)
+                .filter(e -> !Objects.equals(e, recruitEntity.getId()))
+                .toList();
+
+        return RecruitDetailResponseDTO.fromEntity(recruitEntity,companyRecruitIdList);
     }
 }

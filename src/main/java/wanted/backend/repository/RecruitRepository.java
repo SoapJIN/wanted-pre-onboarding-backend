@@ -15,4 +15,6 @@ public interface RecruitRepository extends JpaRepository<RecruitEntity, Long> {
             +"or R.position like %:keyword% "
             +"or R.techStack like %:keyword%")
     List<RecruitEntity> findAllByKeyword(@Param("keyword") String keyword);
+
+    List<RecruitEntity> findAllByCompanyId(Long companyId);
 }
