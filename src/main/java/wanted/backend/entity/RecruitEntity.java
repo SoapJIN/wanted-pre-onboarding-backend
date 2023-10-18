@@ -38,4 +38,11 @@ public class RecruitEntity {
         this.content = content;
         this.techStack = techStack;
     }
+
+    public void update(String position, int compensation, String content, String techStack) {
+        this.position = position;
+        this.compensation = compensation;
+        this.content = content;
+        this.techStack = techStack;
+    }
 }

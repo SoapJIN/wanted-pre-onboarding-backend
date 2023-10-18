@@ -2,10 +2,7 @@ package wanted.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import wanted.backend.dto.RecruitRequestDTO;
 import wanted.backend.service.RecruitService;
 
@@ -20,5 +17,11 @@ public class RecruitApiController {
         recruitService.register(dto);
 
         return ResponseEntity.ok("채용공고 성공적으로 등록됐습니다.");
+    }
+
+    @PatchMapping("")
+    public ResponseEntity<String> updateRecruit(@RequestBody RecruitRequestDTO dto) {
+        recruitService.update(dto);
+        return ResponseEntity.ok("채용공고 수정이 완료됐습니다.");
     }
 }

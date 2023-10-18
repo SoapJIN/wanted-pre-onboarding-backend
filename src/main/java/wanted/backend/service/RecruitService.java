@@ -44,4 +44,13 @@ public class RecruitService {
         return companyRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.COMPANY_NOT_FOUND));
     }
+
+    //2. 채용공고를 수정합니다.
+    @Transactional
+    public void update(RecruitRequestDTO dto) {
+        RecruitEntity recruitEntity = recruitRepository.findById(dto.getId())
+                .orElseThrow(() -> new CustomException(ErrorCode.RECRUIT_NOT_FOUND));
+
+        recruitEntity.update(dto.getPosition(), dto.getCompensation(), dto.getContent(), dto.getTechStack());
+    }
 }
