@@ -4,14 +4,20 @@
 - 본 서비스는 기업의 채용을 위한 웹 서비스 입니다.
 - 회사는 채용공고를 생성하고, 이에 사용자는 지원합니다.
 
+&nbsp;
+
 ## ✔ 시스템 환경
 - java 17
 - Spring Boot 3.1.4
 - MYSQL
 - JPA
 
+&nbsp;
+
 ## ✔ 프로젝트 설정
 - `application.properties` DB연결을 위해 수정 필요
+
+&nbsp;
 
 ## ✔ API
 | HTTP Method | URI                             | 기능             |
@@ -24,6 +30,7 @@
 | GET        | /api/recruits/{id}              | 채용공고 상세 페이지 조회 |
 | POST        | /api/applies                    | 채용공고 사용자 지원    |
 
+&nbsp;
 
 ## ✔ 기능구현
 - 채용공고 등록
@@ -32,6 +39,8 @@
 - 채용공고 목록 조회 및 검색기능
 - 채용공고 상세 페이지 조회
 - 채용공고 사용자 지원
+
+&nbsp;
 
 1. 채용공고 등록
 ```java
@@ -43,7 +52,7 @@
     }
 ```
 
-```json
+```java
 //request
 POST /api/recruits
 
@@ -56,7 +65,7 @@ POST /api/recruits
 }
 ```
 
-```json
+```java
 //response
 -성공
 "채용공고 성공적으로 등록됐습니다."
@@ -80,6 +89,7 @@ POST /api/recruits
 ```
 
 &nbsp;
+
 2. 채용공고 수정
 ```java
     @PatchMapping("/{id}")
@@ -90,7 +100,7 @@ POST /api/recruits
     }
 ```
 
-```json
+```java
 //request
 PATCH /api/recruits/1
 
@@ -102,7 +112,7 @@ PATCH /api/recruits/1
 }
 ```
 
-```json
+```java
 //response
 -성공
 "채용공고 수정이 완료됐습니다."
@@ -118,6 +128,7 @@ PATCH /api/recruits/1
 ```
 
 &nbsp;
+
 3. 채용공고 삭제
 ```java
     @DeleteMapping("/{id}")
@@ -127,12 +138,12 @@ PATCH /api/recruits/1
     }
 ```
 
-```json
+```java
 //request
 DELETE /api/recruits/1
 ```
 
-```json
+```java
 //response
 -성공
 "채용공고 삭제가 완료됐습니다."
@@ -148,6 +159,7 @@ DELETE /api/recruits/1
 ```
 
 &nbsp;
+
 4-1. 채용공고 목록 조회
 ```java
     @GetMapping("")
@@ -164,12 +176,12 @@ DELETE /api/recruits/1
     }
 ```
 
-```json
+```java
 //request
 GET /api/recruits
 ```
 
-```json
+```java
 //response
 -성공
 [
@@ -213,13 +225,14 @@ GET /api/recruits
 ```
 
 &nbsp;
+
 4-2. 채용공고 검색 기능
-```json
+```java
 //request
 GET /api/recruits?keyword=나비
 ```
 
-```json
+```java
 //response
 -성공
 [
@@ -245,6 +258,7 @@ GET /api/recruits?keyword=나비
 ```
 
 &nbsp;
+
 5. 채용공고 상세 페이지 조회
 ```java
     @GetMapping("/{id}")
@@ -255,12 +269,12 @@ GET /api/recruits?keyword=나비
     }
 ```
 
-```json
+```java
 //request
 GET /api/recruits/1
 ```
 
-```json
+```java
 //response
 -성공
 {
@@ -288,6 +302,7 @@ GET /api/recruits/1
 ```
 
 &nbsp;
+
 6. 채용공고 사용자 지원
 ```java
     @PostMapping("")
@@ -298,7 +313,7 @@ GET /api/recruits/1
     }
 ```
 
-```json
+```java
 //request
 GET /api/applies
 
@@ -308,7 +323,7 @@ GET /api/applies
 }
 ```
 
-```json
+```java
 //response
 -성공
 "채용공고에 지원 성공했습니다."
