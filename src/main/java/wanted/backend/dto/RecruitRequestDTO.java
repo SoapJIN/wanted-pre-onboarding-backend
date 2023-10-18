@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class RecruitRequestDTO {
-    private Long id;
     private Long companyId;
     private String position;
     private int compensation;

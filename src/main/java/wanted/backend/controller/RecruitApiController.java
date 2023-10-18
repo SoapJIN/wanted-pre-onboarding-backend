@@ -23,9 +23,9 @@ public class RecruitApiController {
         return ResponseEntity.ok("채용공고 성공적으로 등록됐습니다.");
     }
 
-    @PatchMapping("")
-    public ResponseEntity<String> updateRecruit(@RequestBody RecruitRequestDTO dto) {
-        recruitService.update(dto);
+    @PatchMapping("/{id}")
+    public ResponseEntity<String> updateRecruit(@PathVariable("id") Long id, @RequestBody RecruitRequestDTO dto) {
+        recruitService.update(id, dto);
         return ResponseEntity.ok("채용공고 수정이 완료됐습니다.");
     }
 

@@ -51,8 +51,8 @@ public class RecruitService {
 
     //2. 채용공고를 수정합니다.
     @Transactional
-    public void update(RecruitRequestDTO dto) {
-        RecruitEntity recruitEntity = recruitRepository.findById(dto.getId())
+    public void update(Long id, RecruitRequestDTO dto) {
+        RecruitEntity recruitEntity = recruitRepository.findById(id)
                 .orElseThrow(() -> new CustomException(ErrorCode.RECRUIT_NOT_FOUND));
 
         recruitEntity.update(dto.getPosition(), dto.getCompensation(), dto.getContent(), dto.getTechStack());
