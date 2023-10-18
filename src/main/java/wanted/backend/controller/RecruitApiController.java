@@ -36,15 +36,14 @@ public class RecruitApiController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<RecruitResponseDTO>> getRecruitList(){
-        List<RecruitResponseDTO> list = recruitService.getList();
+    public ResponseEntity<List<RecruitResponseDTO>> search(@RequestParam(value="keyword", required = false) String keyword){
+        List<RecruitResponseDTO> list;
 
-        return ResponseEntity.ok(list);
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<List<RecruitResponseDTO>> search(@RequestParam("keyword")String keyword){
-        List<RecruitResponseDTO> list = recruitService.getListByKeyword(keyword);
+        if(keyword != null) {
+            list = recruitService.getListByKeyword(keyword);
+        }else {
+            list = recruitService.getList();
+        }
 
         return ResponseEntity.ok(list);
     }
