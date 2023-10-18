@@ -53,4 +53,14 @@ public class RecruitService {
 
         recruitEntity.update(dto.getPosition(), dto.getCompensation(), dto.getContent(), dto.getTechStack());
     }
+
+    //3. 채용공고를 삭제합니다.
+    @Transactional
+    public void delete(Long id) {
+        RecruitEntity recruitEntity = recruitRepository.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCode.RECRUIT_NOT_FOUND));
+
+        recruitRepository.delete(recruitEntity);
+    }
+
 }

@@ -24,4 +24,10 @@ public class RecruitApiController {
         recruitService.update(dto);
         return ResponseEntity.ok("채용공고 수정이 완료됐습니다.");
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteRecruit(@PathVariable("id") Long id) {
+        recruitService.delete(id);
+        return ResponseEntity.ok("채용공고 삭제가 완료됐습니다.");
+    }
 }
